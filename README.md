@@ -1,10 +1,9 @@
 # Calculadora Multiplataforma
 
-Este projeto é uma calculadora simples desenvolvida utilizando Python para a parte de back-end, JavaScript para interação dinâmica no front-end, e HTML e CSS para a estrutura e o estilo da interface de usuário. A aplicação funciona de forma independente em ambiente local e pode ser facilmente expandida para funcionalidades adicionais.
+Este projeto é uma calculadora simples desenvolvida utilizando JavaScript para interação dinâmica no front-end, e HTML e CSS para a estrutura e o estilo da interface de usuário. A aplicação funciona de forma independente em ambiente local e pode ser facilmente expandida para funcionalidades adicionais.
 
 ## Tecnologias Utilizadas
 
-- **Python**: Backend para lidar com cálculos avançados e lógica de operações.
 - **JavaScript**: Interatividade na interface, com manipulação de eventos e cálculos no lado do cliente.
 - **HTML**: Estrutura da página e layout.
 - **CSS**: Estilização da interface para tornar a aplicação visualmente agradável.

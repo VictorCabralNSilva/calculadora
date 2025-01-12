@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+header img {
+    width: 300px; /* Define a largura da imagem */
+    position: absolute;
+    top: 8%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o ponto de referência para o centro */
+    z-index: 9999; /* Garante que a imagem fique na frente */
+}
+
+
+.container{
+    height: 100vh;
+    background: linear-gradient(45deg, #9d00ff, #2d09c0, #08d0e2);
+    background-size: 300% 300%;
+    animation: color 10s ease-in-out infinite;
+    position: absolute; /* Ou fixed, dependendo do efeito desejado */
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes color{
+    0%{
+        background-position: 0 50%;
+    }
+
+    50%{
+        background-position: 100% 50%;
+    }
+
+    100%{
+        background-position: 0 50%;
+    }
+}
+
+#calculadora{
+    position: absolute;
+    top: 55%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta o ponto de referência */
+    background: #0F1624;
+    padding: 20px;
+    width: 350px;
+    height: 655px;
+    border-radius: 48px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Garante que ficará visível acima do fundo */
+    
+}
+
+button{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: xx-large;
+    border: none;
+    margin: 10px 4px 3% 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #a5a7ac;
+}
+
+button:hover {
+    background-color: #d8d5d5; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+}
+
+button:active {
+    background-color: #ffffff; /* Cor mais clara ao clicar */
+    transform: scale(0.9); /* Botão diminui ligeiramente */
+}
+
+
+.zero {
+    height: 70px;
+    width: 48%; 
+    padding-left: 20px; /* Espaço para o texto */
+    text-align: left;
+    border: none;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    color: #fff;
+    background-color: #2D2A37;
+
+}
+
+button.zero:hover {
+    background-color: #555; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+}
+
+button.zero:active {
+    background-color: #9d9c9c; /* Cor mais clara ao clicar */
+    transform: scale(0.9); /* Botão diminui ligeiramente */
+}
+
+
+.number{
+background-color: #2D2A37;
+color: #EBEBEB
+}
+
+button.number:hover {
+    background-color: #555; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+}
+
+button.number:active {
+    background-color: #9d9c9c; /* Cor mais clara ao clicar */
+    transform: scale(0.9); /* Botão diminui ligeiramente */
+}
+
+
+.symbols{
+background-color:#f0a500 ;
+color: #EBEBEB;
+}
+
+button.symbols:hover {
+    background-color: #eec368; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+}
+
+button.symbols:active {
+    background-color: #ffffff; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+    color: #f0a500;
+}
+
+.equal{
+    background-color:#f0a500 ;
+    color: #EBEBEB; 
+}
+
+button.equal:hover {
+    background-color: #e4bd68; /* Cor mais clara ao passar o mouse */
+    transform: scale(1.1); /* Efeito de aumento leve */
+}
+
+button.equal:active {
+    background-color: #e4ca93; /* Cor mais clara ao clicar */
+    transform: scale(0.9); /* Botão diminui ligeiramente */
+}
+
+#display{
+    width: calc(100% - 20px); /* Um pouco menor que o contêiner para margens */
+    margin: 0px;
+    padding: 15px;
+    font-size: 2em; /* Tamanho da fonte */
+    text-align: right; /* Alinhar o texto à direita */
+    background-color: #0F1624; /* Cor de fundo */
+    outline: none; /* Remover a borda padrão ao focar */
+    border: none;
+    color: #d8d5d5;
+}
+
+.history-container {
+    display: flex;
+    align-items: center; /* Alinhar verticalmente os itens */
+    width: calc(100% - 20px); /* Ajustar a largura */
+    margin: 10px;
+}
+
+.history {
+    flex: 1; /* Ocupar o espaço restante */
+    height: 100px; /* Altura fixa para o histórico */
+    padding-right: 10px;
+    overflow-y: auto;
+    text-align: right;
+    color: #6B6B6B;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-top: -26%;
+}
+
+.history p {
+    margin-bottom: 5px;
+}
+
+
+.history::-webkit-scrollbar {
+    width: 7px; /* Largura da barra de rolagem */
+}
+
+.history::-webkit-scrollbar-track {
+    background: none
+}
+
+.history::-webkit-scrollbar-thumb {
+    background: #888; /* Cor da barra de rolagem */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+.deleteButton {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    margin:8% 0 0 6%;
+  }
+  .deleteButton svg {
+    width: 44%;
+  }
+  .deleteButton:hover {
+    background-color: rgb(237, 56, 56);
+    overflow: visible;
+  }
+  .bin path {
+    transition: all 0.2s;
+  }
+  .deleteButton:hover .bin path {
+    fill: #fff;
+  }
+  .deleteButton:active {
+    transform: scale(0.98);
+  }
+ 
+
+/* Estilize a imagem */
+.delete-icon {
+    width: 30px; /* Defina a largura da imagem */
+    height: 30px; /* Defina a altura da imagem */
+    margin-top: 10px;
+}

@@ -1,5 +1,5 @@
 // Elementos do DOM
-const display = document.getElementById('display'); // Use esta referência para o display
+const display = document.getElementById('display');
 const historyContainer = document.createElement('div');
 historyContainer.classList.add('history');
 document.getElementById('calculadora').appendChild(historyContainer);
@@ -15,26 +15,29 @@ function clearDisplay() {
 // Função para adicionar valores ao display
 function appendToDisplay(value) {
     const displayValue = display.value;
-    const lastChar = displayValue.slice(-1);
+    const lastChar = displayValue.trim().slice(-1);
+
+    // Mapeia * e / para x e ÷
+    if (value === '*') value = 'x';
+    if (value === '/') value = '÷';
+
     // Não permitir que o primeiro caractere seja um símbolo
     if (displayValue === '' && ['+', '-', 'x', '÷', '%'].includes(value)) {
         return;
     }
+
     // Não permitir que um símbolo seja inserido após outro símbolo
     if (['+', '-', 'x', '÷', '%'].includes(lastChar) && ['+', '-', 'x', '÷', '%'].includes(value)) {
         return;
     }
-    // Adiciona um espaço antes do simbolo se o anterior for um número
+
+    // Adiciona um espaço antes do símbolo, se o anterior for um número
     if (/[0-9]/.test(lastChar) && ['+', '-', 'x', '÷', '%'].includes(value)) {
         display.value += ' ' + value + ' ';
         return;
     }
-    // Adiciona um espaço antes do número se o anterior for um simbolo
-    if (['+', '-', 'x', '÷', '%'].includes(lastChar) && /[0-9]/.test(value)) {
-        display.value += value + ' ';
-        return;
-    }
 
+    // Adiciona o valor diretamente
     display.value += value;
 }
 
@@ -50,10 +53,8 @@ function toggleSign() {
 
 // Função para apagar o último caractere
 function deleteLastChar() {
-    let displayValue = display.value;
-    if (displayValue.length > 0) {
-        display.value = displayValue.slice(0, -1);
-    }
+    let displayValue = display.value.trim();
+    display.value = displayValue.slice(0, -1);
 }
 
 // Função para calcular o resultado
@@ -72,21 +73,11 @@ function calculate() {
             return;
         }
 
-        // Aplica a animação
-        display.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        display.style.opacity = '0';
-        display.style.transform = 'translateY(-10px)';
-
         // Adiciona o cálculo ao histórico
         addHistoryItem(`${displayValue} = ${result}`);
 
-        // Atualiza o display com o resultado após a animação
-        setTimeout(() => {
-            display.value = result;
-            display.style.transition = ''; // Remove transição
-            display.style.opacity = '1'; // Volta a opacidade
-            display.style.transform = ''; // Remove o translate
-        }, 300);
+        // Atualiza o display com o resultado
+        display.value = result;
         lastResult = result;
     } catch (error) {
         display.value = "Erro";
@@ -126,10 +117,11 @@ function safeEval(expression) {
 // Captura eventos de teclado
 document.addEventListener('keydown', function(event) {
     const key = event.key;
+
     if (/[0-9]/.test(key)) {
         appendToDisplay(key);
-    } else if (['+', '-', '*', '/', '%', ','].includes(key)) {
-        appendToDisplay(key);
+    } else if (['+', '-', '*', '/'].includes(key)) {
+        appendToDisplay(key); // * será mapeado para x e / para ÷
     } else if (key === 'Enter') {
         calculate();
     } else if (key === 'Backspace') {
